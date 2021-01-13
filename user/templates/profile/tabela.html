@@ -1,0 +1,49 @@
+{% extends 'base_tables.html' %}
+
+{% load static %}
+
+{% block search_form %}
+    <form method="get" action="{% url 'user:profile' %}">
+        <div class="well">
+            <h4 style="margin-top: 0">Filter</h4>
+            <div class="row">
+
+                <div class="form-group col-sm-8 col-md-6">
+                    <div>
+                        {% for choice in filter.form.categoria %}
+                            <label class="checkbox-inline">
+                                {{ choice.tag }} {{ choice.choice_label }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block grid_header %}
+
+    <th width="20">
+        <span>Posição</span>
+    </th>
+    <th width="60">
+        <span>Nome</span>
+    </th>
+    <th width="20" class="text-center">
+        <span>Pontuação</span>
+    </th>
+
+{% endblock %}
+
+{% block grid_item %}
+    {% include 'profile/include_tabela.html' %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
