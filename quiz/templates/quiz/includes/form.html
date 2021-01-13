@@ -1,0 +1,33 @@
+{% load form_tags %}
+{% load form_tags widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+            <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+<form action="" method="POST" id="quiz"> {% csrf_token %}
+
+    {% for field in form %}
+
+        <div class="form-group">
+            <div class="card-body">
+                <h5 class="card-title">Question {{ forloop.counter }}: {{ field.label_tag }}</h5>
+                {{ field }}
+            </div>
+            {% for error in field.errors %}
+                <small class="form-text " style="color: red">  {{ error }}  </small>
+            {% endfor %}
+            {% if field.help_text %}
+                <small class="form-text text-muted">
+                    {{ field.help_text|safe }}
+                </small>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+

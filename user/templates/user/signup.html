@@ -1,0 +1,53 @@
+{% extends 'user/base_user.html' %}
+
+{% load static %}
+
+
+
+{% block container %}
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Crie a sua conta aqui!</h1>
+                            </div>
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                {% include 'user/includes/form.html' %}
+                                <button type="submit"  class="btn btn-primary btn-user btn-block">
+                                    Registar Conta
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small " href="{% url 'user:password_reset' %}">Esqueceu a senha?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="{% url 'user:login' %}">já tem uma conta? Conecte-se!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
